@@ -160,7 +160,12 @@ class Model {
                 dataUser.inputSexe], (err) => {
                 if (err) throw err
                 console.log("nouvelle utilisateur")
-                //a mettre dans modifié
+                connection.query('select id from profil',(err,row)=>{
+                    if (err) throw err
+                    console.log(row)
+                    cb(0)
+                })
+                /*a mettre dans modifié
                 connection.query('select * from profil where mail=? and password=?',
                     [dataUser.inputEmail, dataUser.Password], (err, row) => {
                         if (err) throw err
@@ -188,7 +193,8 @@ class Model {
                             cb(id_user)
                         }
 
-                    })
+                    })*/
+
             })
     }
 }
