@@ -1,0 +1,29 @@
+<% include header %>
+<div class="container">
+    <%if (status == -1) { %>
+        <div class="alert alert-danger mt-md-3" role="alert">
+            Mail ou mot de passe incorecte
+        </div>
+    <% } %>
+        <%if (status == 0) { %>
+            <div class="alert alert-warning mt-md-3" role="alert">
+                Aucun compte lié à cette adresse. <a href="/inscription">Clique ici pour vous créer un compte</a>
+            </div>
+        <% } %>
+    <h2 class="mt-md-3">Connexion :</h2>
+    <form action="/connexion" method="post">
+        <div class="form-group">
+            <label for="mail">Adresse mail</label>
+            <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp" placeholder="Votre adresse mail">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe">
+        </div>
+        <small class="form-text text-muted">Pas encore de compte ? <a href="/inscription">Clique ici pour vous créer un compte</a></small>
+
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+</div>
+
+<% include footer %>

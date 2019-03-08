@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Titre du site</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<% if(testLog>0){ %>
+<body>
+<div class="container-fullwidth">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><img class="" alt="Logo.png" src=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rencontrer des personnes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tchat">Messagerie </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profil">Mon profil</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline my-4 my-lg-0" action="/" method="post">
+                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Nom/Prénom/Pseudo..." aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Rechercher</button>
+                    </form>
+                </li>
+            </ul>
+            <form action="/" method="post">
+                <button name="disconnect" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Déconnexion</button>
+            </form>
+        </div>
+    </nav>
+<% } else{ %>
+        <body>
+        <div class="container-fullwidth">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="/"><img class="" alt="Logo.png" src=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/">Accueil</a>
+                        </li>
+                    </ul>
+                    <a class="nav-link" href="/inscription"><button class="btn btn-outline-primary my-2 my-sm-0" type="button">Insription</button> </a>
+                    <a class="nav-link" href="/connexion"><button class="btn btn-outline-success my-2 my-sm-0" type="button">Connexion</button> </a>
+                </div>
+            </nav>
+
+<% } %>

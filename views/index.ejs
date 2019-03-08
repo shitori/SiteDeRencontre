@@ -1,0 +1,33 @@
+<% include header %>
+<h2 class="alert alert-info">Bienvenue dans ???, un site très original vous permettant de rencontrer des personnes
+    en fonctions de vos préférences.
+    Alors inscrivez-vous dès maintenant et rejoignez les autres utilisateurs
+</h2>
+<div class="container">
+    <div class="row">
+        <% for (profils of profils){ %>
+            <div class="col mb-md-5">
+                <div class="card" style="width: 18rem;">
+                    <a href="/profil/<%= profils.id %>"><img src="/images/user_image/<%= profils.image %>" class="card-img-top"
+                                                             alt="Pas encore d'image"></a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= profils.nom %> <%= profils.prenom %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> Aka <%= profils.pseudo %></h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item switch_date"><%= profils.date_naissance %></li>
+                            <li class="list-group-item"><%= profils.ville %></li>
+                        </ul>
+                        <p class="card-text mt-md-1"><%= profils.a_propos %></p>
+                        <div class="text-center">
+                            <a href="/profil/<%= profils.id %>" class="btn btn-primary ">Voir le profil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>
+<% include footer %>
+

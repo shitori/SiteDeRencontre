@@ -1,0 +1,35 @@
+<% include header %>
+
+
+<div class="container mt-2">
+    <h2 class="alert alert-info">Voici la liste de tous vos amis</h2>
+    <div class="row">
+        <% for (amis of amis){ %>
+            <div class="col mb-md-5">
+                <div class="card" style="width: 18rem;">
+                    <a href="/profil/<%= amis.id %>"><img src="/images/user_image/<%= amis.image %>" class="card-img-top"
+                                                             alt="Pas encore d'image"></a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= amis.nom %> <%= amis.prenom %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> Aka <%= amis.pseudo %></h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item switch_date"><%= amis.date_naissance %></li>
+                            <li class="list-group-item"><%= amis.ville %></li>
+                            <li class="list-group-item"><%= amis.passion %></li>
+                        </ul>
+                        <p class="card-text mt-md-1"><%= amis.a_propos %></p>
+                        <div class="text-center">
+                            <a href="/profil/<%= amis.id %>" class="btn btn-primary mb-2 ">Voir le profil</a>
+                            <a href="/tchat/<%= amis.id %>" class="btn btn-primary ">Envoyer un message</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>
+
+
+<% include footer %>
