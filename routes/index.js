@@ -96,10 +96,8 @@ router.get('/inscription', function(req, res, next) {
 });
 
 router.post('/inscription', function(req, res, next) {
-    model.addUser(req.body,function (id) {
-        console.log(id)
-        req.session.id_user=id
-        res.redirect("/")
+    model.addUser(req.body,function (status) {
+        res.render('signIn',{ testLog: login(req.session.id_user), status: status });
     })
 });
 

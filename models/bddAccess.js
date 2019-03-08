@@ -111,7 +111,11 @@ class Model {
                                     console.log("pas amis")
                                     dejaLike = false
                                 }
-                                cb(row, rowP, rowL, rowLL, dejaLike)
+                                connection.query('select * from passion where id_user = ?',[id],(err,rowPA)=>{
+                                    if (err) throw err
+                                    cb(row, rowP, rowL, rowLL, dejaLike,rowPA)
+                                })
+
                             })
                         })
                     })
@@ -160,19 +164,10 @@ class Model {
                 dataUser.inputSexe], (err) => {
                 if (err) throw err
                 console.log("nouvelle utilisateur")
-                connection.query('select id from profil',(err,row)=>{
-                    if (err) throw err
-                    console.log(row)
-                    cb(0)
-                })
-                /*a mettre dans modifié
-                connection.query('select * from profil where mail=? and password=?',
-                    [dataUser.inputEmail, dataUser.Password], (err, row) => {
+                connection.query('select id from profil order by id DESC', (err, row) => {
                         if (err) throw err
                         console.log(row)
-                        for (var i = 0; i < row.length; i++) {
-                            var id_user = row[i]["id"]
-                        }
+                        var id_user = row[0]["id"]
                         console.log(id_user)
                         let sql_query
                         if (dataUser.inputPassion != undefined) {
@@ -187,13 +182,13 @@ class Model {
                             }
                             connection.query(sql_query, (err) => {
                                 if (err) throw err
-                                cb(id_user)
+                                cb(-2)
                             })
                         } else {
-                            cb(id_user)
+                            cb(-2)
                         }
 
-                    })*/
+                    })
 
             })
     }

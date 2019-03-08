@@ -10,6 +10,11 @@
                 Aucun compte lié à cette adresse. <a href="/inscription">Clique ici pour vous créer un compte</a>
             </div>
         <% } %>
+        <%if (status == -2) { %>
+            <div class="alert alert-success mt-md-3" role="alert">
+                Votre compte a bien été crée, merci de bien vouloir vous connecté.
+            </div>
+        <% } %>
     <h2 class="mt-md-3">Connexion :</h2>
     <form action="/connexion" method="post">
         <div class="form-group">
