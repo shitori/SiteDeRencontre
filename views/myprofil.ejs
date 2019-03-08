@@ -6,7 +6,7 @@
     <a href="/modifier_profile" class="btn btn-outline-warning btn-block mb-3 pt-2 pb-2">Modifier mon profil</a>
 
     <div class="row">
-        <div class="col-4 ">
+        <div class="col-2 ">
             <% for (profil of profil){ %>
             <ul class="list-group">
                 <li class="list-group-item active font-weight-bold d-flex justify-content-between align-items-center">
@@ -24,6 +24,14 @@
                 <li class="list-group-item"><p class="font-weight-bold">Blog : </p><a href="<%= profil.blog %>"><%= profil.blog %></a></li>
                 <li class="list-group-item"><p class="font-weight-bold">Description : </p><%= profil.a_propos %></li>
             </ul>
+            <% } %>
+        </div>
+        <div class="col-2">
+            <li class="list-group-item active font-weight-bold d-flex justify-content-between align-items-center">
+                Passion:
+            </li>
+            <% for (passions of passions){ %>
+                <li class="list-group-item"><%= passions.name %></li>
             <% } %>
         </div>
         <div class="col-8">

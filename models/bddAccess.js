@@ -111,7 +111,7 @@ class Model {
                                     console.log("pas amis")
                                     dejaLike = false
                                 }
-                                connection.query('select * from passion where id_user = ?',[id],(err,rowPA)=>{
+                                connection.query('select * from passionstock where id in (select id_passion from passion where id_user = ?)',[id],(err,rowPA)=>{
                                     if (err) throw err
                                     cb(row, rowP, rowL, rowLL, dejaLike,rowPA)
                                 })
@@ -191,6 +191,20 @@ class Model {
                     })
 
             })
+    }
+
+    static addLike(ide,idd,cb){
+        connection.query('insert into ami values (default ,?,?)',[ide,idd],(err)=>{
+            if (err) throw err
+            cb("like enregistré")
+        })
+    }
+
+    static removeLike(ide,idd,cb){
+        connection.query('delete from ami where envoyeur=? and destinataire=?',[ide,idd],(err)=>{
+            if (err) throw err
+            cb("dislike enregistré")
+        })
     }
 }
 

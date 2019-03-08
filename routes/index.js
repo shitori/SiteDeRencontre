@@ -32,16 +32,29 @@ router.post('/',function (req,res,next) {
 
 
 router.get('/profil', function(req, res, next) {
-  model.profil(req.session.id_user,0,function (profil,mesImages,mesLikes,mesLLike,dejaLike) {
-      res.render('myprofil',{ profil: profil,images : mesImages, nbImage :mesImages.length,likes :mesLikes,rlikes :mesLLike,testLog: login(req.session.id_user) });
+  model.profil(req.session.id_user,0,function (profil,mesImages,mesLikes,mesLLike,dejaLike,passion) {
+      res.render('myprofil',{ profil: profil,images : mesImages, nbImage :mesImages.length,likes :mesLikes,rlikes :mesLLike,passions:passion,testLog: login(req.session.id_user) });
   })
 });
 
 router.get('/profil/:id', function(req, res, next) {
-    model.profil(req.params.id,req.session.id_user,function (profil,mesImages,mesLikes,mesLLike,dejaLike) {
+    model.profil(req.params.id,req.session.id_user,function (profil,mesImages,mesLikes,mesLLike,dejaLike,passion) {
         console.log(dejaLike)
-        res.render('profil',{ profil: profil,images : mesImages, nbImage :mesImages.length,likes :mesLikes,rlikes :mesLLike,dejaLike:dejaLike,testLog: login(req.session.id_user) });
+        res.render('profil',{ id_user:req.params.id,profil: profil,images : mesImages, nbImage :mesImages.length,likes :mesLikes,rlikes :mesLLike,dejaLike:dejaLike,passions:passion,testLog: login(req.session.id_user) });
     })
+});
+
+router.post('/profil/:id', function(req, res, next) {
+    if (req.body.action=="like") {
+        model.addLike(req.session.id_user,req.params.id,function (status) {
+            res.redirect('/profil/'+req.params.id)
+        })
+    }else{
+        model.removeLike(req.session.id_user,req.params.id,function (status){
+            res.redirect('/profil/'+req.params.id)
+        })
+    }
+
 });
 
 router.post('/profil', function(req, res, next) {
