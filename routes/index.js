@@ -132,7 +132,15 @@ router.post('/tchat/:id', function(req, res, next) {
 
 
 
-router.get('/search', function(req, res, next) {
+router.get('/search/:type', function(req, res, next) {
+    if (req.params.id=="random") {
+
+    }else if (req.params.id=="mytastes") {
+
+    }else if (req.params.id=="mytastes") {
+
+    }
+
   res.render('search',{ testLog: login(req.session.id_user) });
 });
 

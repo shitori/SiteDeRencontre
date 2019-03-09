@@ -16,7 +16,7 @@ $(document).ready(function() {
 
             var birth = new Date($("#inputBirth").val());
             console.log(actualDate.getFullYear()-birth.getFullYear());
-            if (actualDate.getFullYear()-birth.getFullYear()>10){
+            if (actualDate.getFullYear()-birth.getFullYear()>16){
                 $('#send').removeAttr('disabled');
             }else{
                 $('#send').attr('disabled', 'true');

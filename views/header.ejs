@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Titre du site</title>
+    <title>L&L - Site de rencontre</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,7 +11,7 @@
 <body>
 <div class="container-fullwidth">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"><img class="" alt="Logo.png" src=""></a>
+        <a class="navbar-brand" href="/"><img style="height: 65px;" alt="Logo.png" src="/images/logo.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,9 +21,18 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="/">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Rencontrer des personnes</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Rencontrer des personnes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/search/random">Aléatoirement</a>
+                        <a class="dropdown-item" href="/search/mytastes">En fonction de mes goûts</a>
+                        <a class="dropdown-item" href="/search/otherstaste">Opposées à mes goûts</a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/tchat">Messagerie </a>
                 </li>
@@ -46,7 +55,7 @@
         <body>
         <div class="container-fullwidth">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="/"><img class="" alt="Logo.png" src=""></a>
+                <a class="navbar-brand" href="/"><img  style="height: 65px;" alt="Logo.png" src="/images/logo.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
