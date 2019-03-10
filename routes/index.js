@@ -26,7 +26,6 @@ router.post('/',function (req,res,next) {
 
     })
   }
-
 });
 
 
@@ -132,20 +131,30 @@ router.post('/tchat/:id', function(req, res, next) {
 
 
 
-router.get('/search/:type', function(req, res, next) {
-    if (req.params.id=="random") {
-
-    }else if (req.params.id=="mytastes") {
-
-    }else if (req.params.id=="mytastes") {
-
+router.get('/search/:type_search', function(req, res, next) {
+    console.log(req.params.type_search)
+    if (req.params.type_search=="random") {
+        model.randomProfil(req.session.id_user,function (profil) {
+            console.log(profil)
+            res.render("search",{type:req.params.type_search,profil:profil,testLog: login(req.session.id_user)})
+        })
+    }else if (req.params.type_search=="mytastes") {
+        model.myTastesProfil(req.session.id_user,function (profil) {
+            res.render("search",{type:req.params.type_search,profil:profil,testLog: login(req.session.id_user)})
+        })
+    }else if (req.params.type_search=="otherstaste") {
+        model.othersTastesProfil(req.session.id_user,function (profil) {
+            res.render("search",{type:req.params.type_search,profil:profil,testLog: login(req.session.id_user)})
+        })
+    }else{
+        res.redirect("/")
     }
-
-  res.render('search',{ testLog: login(req.session.id_user) });
 });
 
-router.post('/search', function(req, res, next) {
-  res.render('search',{ testLog: login(req.session.id_user) });
+router.post('/search/:type_search', function(req, res, next) {
+    model.addLike(req.session.id_user,req.body.id_like,function (status) {
+        res.redirect('/search/'+req.params.type_search)
+    })
 });
 
 
