@@ -9,9 +9,7 @@ $(document).ready(function() {
             || $("#inputFirstName").val()==""
             || $("#inputLastName").val()==""
             || $("#inputPseudo").val()==""
-            || $("#inputBirth").val()==""
-            || $("#inputPassword").val()!=$("#inputConfirmPassword").val()
-            || $("#inputPassword").val().length <=3) {
+            || $("#inputBirth").val()=="") {
             $('#send').attr('disabled', 'true');
         }else {
 

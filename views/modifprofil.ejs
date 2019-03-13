@@ -1,0 +1,239 @@
+<% include header %>
+<div class="container mt-3">
+    <form action="modifier_profile" method="post">
+        <% for (data of data){ %>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" name="inputEmail" id="inputEmail" value="<%= data.mail %>">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputLastName">Nom</label>
+                            <input type="text" class="form-control" name="inputLastName" id="inputLastName" value="<%= data.nom %>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputFirstName">Prénom</label>
+                            <input type="text" class="form-control" name="inputFirstName" id="inputFirstName" value="<%= data.prenom %>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputPseudo">Pseudonyme</label>
+                            <input type="text" class="form-control" name="inputPseudo" id="inputPseudo" value="<%= data.pseudo %>">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputPhone">Téléphone</label>
+                            <input type="text" class="form-control" name="inputPhone" value="<%= data.telephone %>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputVille">Ville</label>
+                            <input type="text" class="form-control" name="inputVille" value="<%= data.ville %>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputBlog">Blog</label>
+                            <input type="text" class="form-control" name="inputBlog" value="<%= data.blog %>">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group mb-3 col-md-4">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputSexe">Sexe</label>
+                            </div>
+                            <% if (data.sexe==0){ %>
+                                <select class="custom-select" name="inputSexe">
+                                    <option value="0" selected>Femme</option>
+                                    <option value="1" >Homme</option>
+                                </select>
+                            <% } else { %>
+                                <select class="custom-select" name="inputSexe">
+                                    <option value="0">Femme</option>
+                                    <option value="1" selected>Homme</option>
+                                </select>
+                            <% }%>
+
+                        </div>
+                        <div class="input-group mb-3 col-md-4">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputDiplome">Diplome</label>
+                            </div>
+                            <% if (data.diplome=="bac"){ %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" >Aucun</option>
+                                    <option value="bac" selected>Bac</option>
+                                    <option value="bts">Bts</option>
+                                    <option value="dut">dut</option>
+                                    <option value="licence">Licence</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctorat">Doctorat</option>
+                                </select>
+                            <% } else if (data.diplome=="bts")  { %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" >Aucun</option>
+                                    <option value="bac" >Bac</option>
+                                    <option value="bts" selected>Bts</option>
+                                    <option value="dut">dut</option>
+                                    <option value="licence">Licence</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctorat">Doctorat</option>
+                                </select>
+                            <% } else if (data.diplome=="dut")  { %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" >Aucun</option>
+                                    <option value="bac" >Bac</option>
+                                    <option value="bts" >Bts</option>
+                                    <option value="dut" selected>dut</option>
+                                    <option value="licence">Licence</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctorat">Doctorat</option>
+                                </select>
+                            <% } else if (data.diplome=="licence")  { %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" >Aucun</option>
+                                    <option value="bac" >Bac</option>
+                                    <option value="bts" >Bts</option>
+                                    <option value="dut" >dut</option>
+                                    <option value="licence" selected>Licence</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctorat">Doctorat</option>
+                                </select>
+                            <% } else if (data.diplome=="master")  { %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" >Aucun</option>
+                                    <option value="bac" >Bac</option>
+                                    <option value="bts" >Bts</option>
+                                    <option value="dut" >dut</option>
+                                    <option value="licence" >Licence</option>
+                                    <option value="master" selected>Master</option>
+                                    <option value="doctorat">Doctorat</option>
+                                </select>
+                            <% } else if (data.diplome=="doctorat")  { %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" >Aucun</option>
+                                    <option value="bac" >Bac</option>
+                                    <option value="bts" >Bts</option>
+                                    <option value="dut" >dut</option>
+                                    <option value="licence" >Licence</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctorat" selected>Doctorat</option>
+                                </select>
+                            <% } else { %>
+                                <select class="custom-select" name="inputDiplome">
+                                    <option value="aucun" selected>Aucun</option>
+                                    <option value="bac">Bac</option>
+                                    <option value="bts">Bts</option>
+                                    <option value="dut">dut</option>
+                                    <option value="licence">Licence</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctorat">Doctorat</option>
+                                </select>
+                            <% }%>
+
+                        </div>
+                        <div class="input-group mb-3 col-md-4">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputSituation">Situation</label>
+                            </div>
+                            <% if (data.situation=="chomage"){ %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" >Sans activité</option>
+                                    <option value="chomage" selected>Chomage</option>
+                                    <option value="employé/ouvrier" >Employé ou Ouvrier</option>
+                                    <option value="commercant" >Commercant</option>
+                                    <option value="cadre" >Cadre</option>
+                                    <option value="professeur" >Professeur</option>
+                                    <option value="chef d'entreprise" >Chef d'entreprise</option>
+                                </select>
+                            <% } else if (data.situation=="employé/ouvrier")  { %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" >Sans activité</option>
+                                    <option value="chomage" >Chomage</option>
+                                    <option value="employé/ouvrier" selected>Employé ou Ouvrier</option>
+                                    <option value="commercant" >Commercant</option>
+                                    <option value="cadre" >Cadre</option>
+                                    <option value="professeur" >Professeur</option>
+                                    <option value="chef d'entreprise" >Chef d'entreprise</option>
+                                </select>
+                            <% } else if (data.situation=="commercant")  { %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" >Sans activité</option>
+                                    <option value="chomage" >Chomage</option>
+                                    <option value="employé/ouvrier" >Employé ou Ouvrier</option>
+                                    <option value="commercant" selected>Commercant</option>
+                                    <option value="cadre" >Cadre</option>
+                                    <option value="professeur" >Professeur</option>
+                                    <option value="chef d'entreprise" >Chef d'entreprise</option>
+                                </select>
+                            <% } else if (data.situation=="cadre")  { %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" >Sans activité</option>
+                                    <option value="chomage" >Chomage</option>
+                                    <option value="employé/ouvrier" >Employé ou Ouvrier</option>
+                                    <option value="commercant" >Commercant</option>
+                                    <option value="cadre" selected>Cadre</option>
+                                    <option value="professeur" >Professeur</option>
+                                    <option value="chef d'entreprise" >Chef d'entreprise</option>
+                                </select>
+                            <% } else if (data.situation=="professeur")  { %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" >Sans activité</option>
+                                    <option value="chomage" >Chomage</option>
+                                    <option value="employé/ouvrier" >Employé ou Ouvrier</option>
+                                    <option value="commercant" >Commercant</option>
+                                    <option value="cadre" >Cadre</option>
+                                    <option value="professeur" selected>Professeur</option>
+                                    <option value="chef d'entreprise" >Chef d'entreprise</option>
+                                </select>
+                            <% } else if (data.situation=="chef d'entreprise")  { %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" >Sans activité</option>
+                                    <option value="chomage" >Chomage</option>
+                                    <option value="employé/ouvrier" >Employé ou Ouvrier</option>
+                                    <option value="commercant" >Commercant</option>
+                                    <option value="cadre" >Cadre</option>
+                                    <option value="professeur" >Professeur</option>
+                                    <option value="chef d'entreprise" selected>Chef d'entreprise</option>
+                                </select>
+                            <% } else { %>
+                                <select class="custom-select" name="inputSituation">
+                                    <option value="sans activité" selected>Sans activité</option>
+                                    <option value="chomage" >Chomage</option>
+                                    <option value="employé/ouvrier" >Employé ou Ouvrier</option>
+                                    <option value="commercant" >Commercant</option>
+                                    <option value="cadre" >Cadre</option>
+                                    <option value="professeur" >Professeur</option>
+                                    <option value="chef d'entreprise" >Chef d'entreprise</option>
+                                </select>
+                            <% }%>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Description de vous</span>
+                            </div>
+                            <textarea class="form-control" aria-label="Description de vous" name="inputDescription" ><%= data.a_propos %></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPseudo">Date de naissance</label>
+                            <input type="date" class="form-control" name="inputBirth" id="inputBirth" value="<%= data.date_naissance %>">
+                        </div>
+                    </div>
+                    <% } %>
+                    <label for="inputPassion">Passion :</label><br>
+                    <% for (passion of passion){ %>
+                        <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion" value="<%= passion.id %>" checked><%= passion.name %>
+                    <% } %>
+                    <% for (notPassion of notPassion){ %>
+                        <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion" value="<%= notPassion.id %>" ><%= notPassion.name %>
+                    <% } %>
+                    <br>
+                    <button type="submit" id="send" class="btn btn-primary btn-lg">Modifier</button>
+                </div>
+            </div>
+
+    </form>
+</div>
+
+<% include footer2 %>

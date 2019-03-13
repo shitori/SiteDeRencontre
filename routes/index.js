@@ -73,11 +73,18 @@ router.post('/profil', function(req, res, next) {
 
 
 router.get('/modifier_profile', function(req, res, next) {
-  res.render('modifprofil',{ testLog: login(req.session.id_user) });
+    model.modifProfil(req.session.id_user,function (data,passion,notPassion) {
+        res.render('modifprofil',{data:data,passion:passion,notPassion:notPassion, testLog: login(req.session.id_user) });
+    })
+
 });
 
 router.post('/modifier_profile', function(req, res, next) {
-  res.render('modifprofil',{ testLog: login(req.session.id_user) });
+    console.log(req.body)
+    model.applyModifProfil(req.session.id_user,req.body,function (status) {
+        console.log(status)
+        res.redirect("/profil")
+    })
 });
 
 

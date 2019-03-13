@@ -3,7 +3,7 @@ let moment = require('../bin/moment');
 
 class Model {
     static index(cb) {
-        connection.query('select * from profil', (err, row) => {
+        connection.query('select * from profil order by rand() limit 6', (err, row) => {
             if (err) throw err
             connection.query('select * from photo where name like "%-1%"', (err, rowI) => {
                 if (err) throw err
@@ -16,7 +16,6 @@ class Model {
                     }
                 }
                 cb(row)
-
             })
         })
     }
@@ -49,7 +48,6 @@ class Model {
             } else {
                 cb(-1)
             }
-
         })
     }
 
@@ -169,7 +167,7 @@ class Model {
                         console.log(row)
                         var id_user = row[0]["id"]
                         console.log(id_user)
-                        let sql_query
+                        let sql_query=""
                         if (dataUser.inputPassion != undefined) {
                             for (var i = 0; i < dataUser.inputPassion.length; i++) {
                                 if (i == 0) {
@@ -259,6 +257,67 @@ class Model {
                         }
                     }
                     cb(row)
+                })
+            })
+    }
+
+    static modifProfil(id,cb){
+        connection.query('select * from profil where id = ?',[id],(err,row)=>{
+            if (err) throw err
+            for (let i = 0; i < row.length; i++) {
+                var date=new Date(row[i]['date_naissance'])
+                row[i]['date_naissance'] = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+                    .toISOString()
+                    .split("T")[0];
+            }
+            connection.query('select * from passionstock where id in (select id_passion from passion where id_user=?)',[id],(err,rowP)=>{
+                if (err) throw err
+                connection.query('select * from passionstock where id not in (select id_passion from passion where id_user=?)',[id],(err,rowNP)=>{
+                    if (err) throw err
+                    cb(row,rowP,rowNP)
+                })
+            })
+        })
+    }
+
+    static applyModifProfil(id,dataUser,cb){
+        connection.query("update profil set mail=?,pseudo=?,date_naissance=?,ville=?,situation=?,a_propos=?,nom=?,telephone=?,blog=?,diplome=?,prenom=?,sexe=? where id=?",
+            [dataUser.inputEmail,
+            dataUser.inputPseudo,
+            new Date(dataUser.inputBirth),
+            dataUser.inputVille,
+            dataUser.inputSituation,
+            dataUser.inputDescription,
+            dataUser.inputLastName,
+            dataUser.inputPhone,
+            dataUser.inputBlog,
+            dataUser.inputDiplome,
+            dataUser.inputFirstName,
+            dataUser.inputSexe,id],(err,row)=>{
+                if (err) throw err
+                console.log("info user OK")
+                connection.query("delete from passion where id_user=?",[id],(err,rowB)=>{
+                    if (err) throw err
+                    console.log("passion user REMOVE")
+                    let sql_query=""
+                    console.log(dataUser.inputPassion)
+                    if (dataUser.inputPassion != undefined) {
+                        for (var i = 0; i < dataUser.inputPassion.length; i++) {
+                            if (i == 0) {
+                                sql_query = "insert into passion values (default," + connection.escape(id)
+                                    + "," + connection.escape(dataUser.inputPassion[i]) + ")"
+                            } else {
+                                sql_query = sql_query + ",(default," + connection.escape(id)
+                                    + "," + connection.escape(dataUser.inputPassion[i]) + ")"
+                            }
+                        }
+                        connection.query(sql_query, (err) => {
+                            if (err) throw err
+                            cb("passion user OK")
+                        })
+                    }else{
+                        cb("user aucunes passion")
+                    }
                 })
             })
     }

@@ -10,7 +10,7 @@ let fileUpload = require('express-fileupload');
 let app = express();
 
 // middleware
-app.use(bodyParser.urlencoded({extendede: false}))
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
