@@ -129,11 +129,19 @@ router.get('/tchat', function(req, res, next) {
 });
 
 router.get('/tchat/:id', function(req, res, next) {
-  res.render('tchat',{ testLog: login(req.session.id_user) });
+    model.friends(req.session.id_user,function (amis) {
+        model.messages(req.session.id_user,req.params.id,function (messages,infos,idMe,idF) {
+            console.log(infos)
+            res.render('tchat',{ amis : amis,messages:messages,infos:infos,idMe:idMe,idF:idF,testLog: login(req.session.id_user) });
+        })
+    })
 });
 
 router.post('/tchat/:id', function(req, res, next) {
-  res.render('tchat',{ testLog: login(req.session.id_user) });
+    model.addMessage(req.session.id_user,req.params.id,req.body.message,function (status) {
+        console.log(status)
+        res.redirect("/tchat/"+req.params.id)
+    })
 });
 
 

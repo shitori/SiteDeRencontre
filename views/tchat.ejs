@@ -1,0 +1,100 @@
+<% include header %>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-2">
+            <ul class="list-group">
+                <li class="list-group-item active">Contact</li>
+                <% for (amis of amis){ %>
+                    <a href="/tchat/<%= amis.id %>" class="text-reset"><li class="list-group-item"><img src="/images/user_image/<%= amis.image %>" width="100px" class="rounded mr-3"><%= amis.nom %> <%= amis.prenom %></li></a>
+                <% } %>
+            </ul>
+        </div>
+        <div class="col-10 mt-3">
+            <% for (messages of messages){ %>
+                <% if (messages.envoyeur==idF){ %>
+                    <% if (infos[0].id==idF){ %>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="/images/user_image/<%= infos[0].image %>" width="100px" class="rounded mr-3"><br>
+                                <%= infos[0].pseudo %>
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    <%= messages.data %>
+                                </p>
+                                <p class="font-weight-light">
+                                    <%= messages.send %>
+                                </p>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
+                    <% }else { %>
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="/images/user_image/<%= infos[1].image %>" width="100px" class="rounded mr-3"><br>
+                                    <%= infos[1].pseudo %>
+                                </div>
+                                <div class="col-8">
+                                    <p>
+                                        <%= messages.data %>
+                                    </p>
+                                    <p class="font-weight-light">
+                                        <%= messages.send %>
+                                    </p>
+                                </div>
+                                <div class="col-2"></div>
+                            </div>
+                    <% } %>
+                <% }else { %>
+                    <% if (infos[0].id==idF){ %>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8">
+                                    <p>
+                                        <%= messages.data %>
+                                    </p>
+                                    <p class="font-weight-light">
+                                        <%= messages.send %>
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <img src="/images/user_image/<%= infos[1].image %>" width="100px" class="rounded mr-3"><br>
+                                    <%= infos[1].pseudo %>
+                                </div>
+                            </div>
+                    <% }else { %>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8">
+                                    <p>
+                                        <%= messages.data %>
+                                    </p>
+                                    <p class="font-weight-light">
+                                        <%= messages.send %>
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <img src="/images/user_image/<%= infos[0].image %>" width="100px" class="rounded mr-3"><br>
+                                    <%= infos[0].pseudo %>
+                                </div>
+                            </div>
+                    <% } %>
+                <% } %>
+            <% } %>
+            <div class="fixed-bottom">
+                <form action="/tchat/<%=idF%>" method="post">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Nouveau message</span>
+                        </div>
+                        <textarea name="message" class="form-control" aria-label="With textarea"></textarea>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Envoyer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer %>

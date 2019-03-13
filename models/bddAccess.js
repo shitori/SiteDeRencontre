@@ -321,6 +321,37 @@ class Model {
                 })
             })
     }
+
+    static messages(idMe,idF,cb){
+        connection.query("select * from message where (envoyeur = ? and destinataire =? ) or (envoyeur = ? and destinataire =? ) order by send",[idMe,idF,idF,idMe],(err,rowM)=>{
+            if (err) throw err
+            connection.query('select * from profil where id=? or id=?',[idF,idMe],(err, row) => {
+                if (err) throw err
+                connection.query('select * from photo where name like "%-1%"', (err, rowI) => {
+                    if (err) throw err
+                    for (let i = 0; i < row.length; i++) {
+                        row[i]['date_naissance'] = (moment(row[i]['date_naissance']).fromNow()).replace("il y a ", "")
+                        for (let j = 0; j < rowI.length; j++) {
+                            if (row[i]['id'] == rowI[j]['id_user']) {
+                                row[i]['image'] = rowI[j]['name']
+                            }
+                        }
+                    }
+                    for (let i = 0; i < rowM.length; i++) {
+                        rowM[i]["send"]=(moment(rowM[i]["send"])).fromNow()
+                    }
+                    cb(rowM,row,idMe,idF)
+                })
+            })
+        })
+    }
+
+    static addMessage(ide,idd,text,cb){
+        connection.query("insert into message values (default,?,?,?,?)",[ide,idd,new Date(),text],(err)=>{
+            if (err) throw err
+            cb("new message")
+        })
+    }
 }
 
 module.exports = Model
