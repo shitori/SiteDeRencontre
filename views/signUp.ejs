@@ -99,14 +99,14 @@
                     </div>
                 </div>
 
-                <label for="inputPassion[]">Passion </label>
+                <label for="inputPassion">Passion </label>
                 <div class="form-row">
                     <% for (var i = 0; i < passions.length;i++) { %>
                         <% if (i==0)  { %>
                             <div class="col-3">
                                 <ul class="list-group ">
                                     <li class="list-group-item">
-                                        <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion[]" value="<%= passions[i].id %>"><%= passions[i].name %>
+                                        <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion" value="<%= passions[i].id %>"><%= passions[i].name %>
                                     </li>
                         <% }else if (i%10==0) { %>
                                 </ul>
@@ -114,11 +114,11 @@
                     <div class="col-3">
                         <ul class="list-group ">
                             <li class="list-group-item">
-                                <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion[]" value="<%= passions[i].id %>"><%= passions[i].name %>
+                                <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion" value="<%= passions[i].id %>"><%= passions[i].name %>
                             </li>
                         <% }else { %>
                                 <li class="list-group-item">
-                                    <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion[]" value="<%= passions[i].id %>"><%= passions[i].name %>
+                                    <input type="checkbox" style="width: 20px; height: 20px;" name="inputPassion" value="<%= passions[i].id %>"><%= passions[i].name %>
                                 </li>
                         <%}%>
                     <%}%>

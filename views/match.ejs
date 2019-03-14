@@ -7,7 +7,7 @@
         <% for (amis of amis){ %>
             <div class="col mb-md-5">
                 <div class="card" style="width: 18rem;">
-                    <a href="/profil/<%= amis.id %>"><img src="/images/user_image/<%= amis.image %>" class="card-img-top"
+                    <a href="/tchat/<%= amis.id %>"><img src="/images/user_image/<%= amis.image %>" class="card-img-top"
                                                              alt="Pas encore d'image"></a>
                     <div class="card-body">
                         <h5 class="card-title"><%= amis.nom %> <%= amis.prenom %></h5>
@@ -19,8 +19,8 @@
                         </ul>
                         <p class="card-text mt-md-1"><%= amis.a_propos %></p>
                         <div class="text-center">
-                            <a href="/profil/<%= amis.id %>" class="btn btn-primary mb-2 ">Voir le profil</a>
-                            <a href="/tchat/<%= amis.id %>" class="btn btn-primary ">Envoyer un message</a>
+                            <a href="/tchat/<%= amis.id %>" class="btn btn-primary mb-2 ">Envoyer un message</a>
+                            <a href="/profil/<%= amis.id %>" class="btn btn-primary ">Voir le profil</a>
                         </div>
                     </div>
                 </div>
