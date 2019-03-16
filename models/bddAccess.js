@@ -1,6 +1,69 @@
 let connection = require('../bin/bdd')
 let moment = require('../bin/moment');
 
+function isValidEmailAddress(emailAddress) {
+    let pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    return pattern.test(emailAddress);
+}
+
+function dataError(data) {
+    let actualDate = new Date()
+    if (!isValidEmailAddress(data.inputEmail)
+        || data.inputFirstName==""
+        || data.inputLastName==""
+        || data.inputPseudo==""
+        || data.inputBirth==""
+        || data.inputPassword!=data.inputConfirmPassword
+        || data.inputPassword.length <=3
+        || data.inputEmail.length >= 50
+        || data.inputFirstName.length >= 50
+        || data.inputPseudo.length >= 50
+        || data.inputPassword.length >= 50
+        || data.inputPhone.length > 10
+        || data.inputVille.length >= 50
+        || data.inputBlog.length >= 250
+        || data.inputSexe.length >= 11
+        || data.inputSituation.length >= 50) {
+        return true;
+    }else {
+        let birth = new Date(data.inputBirth);
+        console.log(actualDate.getFullYear()-birth.getFullYear());
+        if (actualDate.getFullYear()-birth.getFullYear()>16){
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
+
+
+function dataError2(data) {
+    let actualDate = new Date()
+    if (!isValidEmailAddress(data.inputEmail)
+        || data.inputFirstName==""
+        || data.inputLastName==""
+        || data.inputPseudo==""
+        || data.inputBirth==""
+        || data.inputEmail.length >= 50
+        || data.inputFirstName.length >= 50
+        || data.inputPseudo.length >= 50
+        || data.inputPhone.length > 10
+        || data.inputVille.length >= 50
+        || data.inputBlog.length >= 250
+        || data.inputSexe.length >= 11
+        || data.inputSituation.length >= 50) {
+        return true;
+    }else {
+        let birth = new Date(data.inputBirth);
+        console.log(actualDate.getFullYear()-birth.getFullYear());
+        if (actualDate.getFullYear()-birth.getFullYear()>16){
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
+
 class Model {
     static index(cb) {
         connection.query('select * from profil order by rand() limit 6', (err, row) => {
@@ -146,6 +209,9 @@ class Model {
 
     static addUser(dataUser, cb) {
         console.log(dataUser)
+        if (dataError(dataUser)){
+            cb("Une erreur c'est produit!")
+        }
         connection.query('insert into profil (mail, password, pseudo, date_naissance, ville, situation, a_propos, nom, telephone, blog, diplome, prenom, sexe) values (?,?,?,?,?,?,?,?,?,?,?,?,?)',
             [dataUser.inputEmail,
                 dataUser.inputPassword,
@@ -281,6 +347,9 @@ class Model {
     }
 
     static applyModifProfil(id,dataUser,cb){
+        if (dataError2(dataUser)){
+            cb("une erreur est intervenue")
+        }
         connection.query("update profil set mail=?,pseudo=?,date_naissance=?,ville=?,situation=?,a_propos=?,nom=?,telephone=?,blog=?,diplome=?,prenom=?,sexe=? where id=?",
             [dataUser.inputEmail,
             dataUser.inputPseudo,
