@@ -11,7 +11,16 @@ $(document).ready(function() {
             || $("#inputPseudo").val()==""
             || $("#inputBirth").val()==""
             || $("#inputPassword").val()!=$("#inputConfirmPassword").val()
-            || $("#inputPassword").val().length <=3) {
+            || $("#inputPassword").val().length <=3
+            || $("#inputEmail").val().length >= 50
+            || $("#inputFirstName").val().length >= 50
+            || $("#inputPseudo").val().length >= 50
+            || $("#inputPassword").val().length >= 50
+            || $("#inputPhone").val().length > 10
+            || $("#inputVille").val().length >= 50
+            || $("#inputBlog").val().length >= 250
+            || $("#inputSexe").val().length >= 11
+            || $("#inputSituation").val().length >= 50) {
             $('#send').attr('disabled', 'true');
         }else {
 

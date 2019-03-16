@@ -25,15 +25,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputPhone">Téléphone</label>
-                            <input type="text" class="form-control" name="inputPhone" value="<%= data.telephone %>">
+                            <input type="text" class="form-control" name="inputPhone" id="inputPhone" value="<%= data.telephone %>">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputVille">Ville</label>
-                            <input type="text" class="form-control" name="inputVille" value="<%= data.ville %>">
+                            <input type="text" class="form-control" name="inputVille" id="inputVille" value="<%= data.ville %>">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputBlog">Blog</label>
-                            <input type="text" class="form-control" name="inputBlog" value="<%= data.blog %>">
+                            <input type="text" class="form-control" name="inputBlog" id="inputBlog" value="<%= data.blog %>">
                         </div>
                     </div>
                     <div class="form-row">
@@ -42,12 +42,12 @@
                                 <label class="input-group-text" for="inputSexe">Sexe</label>
                             </div>
                             <% if (data.sexe==0){ %>
-                                <select class="custom-select" name="inputSexe">
+                                <select class="custom-select" name="inputSexe" id="inputSexe">
                                     <option value="0" selected>Femme</option>
                                     <option value="1" >Homme</option>
                                 </select>
                             <% } else { %>
-                                <select class="custom-select" name="inputSexe">
+                                <select class="custom-select" name="inputSexe" id="inputSexe">
                                     <option value="0">Femme</option>
                                     <option value="1" selected>Homme</option>
                                 </select>
@@ -59,7 +59,7 @@
                                 <label class="input-group-text" for="inputDiplome">Diplome</label>
                             </div>
                             <% if (data.diplome=="bac"){ %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" >Aucun</option>
                                     <option value="bac" selected>Bac</option>
                                     <option value="bts">Bts</option>
@@ -69,7 +69,7 @@
                                     <option value="doctorat">Doctorat</option>
                                 </select>
                             <% } else if (data.diplome=="bts")  { %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" >Aucun</option>
                                     <option value="bac" >Bac</option>
                                     <option value="bts" selected>Bts</option>
@@ -79,7 +79,7 @@
                                     <option value="doctorat">Doctorat</option>
                                 </select>
                             <% } else if (data.diplome=="dut")  { %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" >Aucun</option>
                                     <option value="bac" >Bac</option>
                                     <option value="bts" >Bts</option>
@@ -89,7 +89,7 @@
                                     <option value="doctorat">Doctorat</option>
                                 </select>
                             <% } else if (data.diplome=="licence")  { %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" >Aucun</option>
                                     <option value="bac" >Bac</option>
                                     <option value="bts" >Bts</option>
@@ -99,7 +99,7 @@
                                     <option value="doctorat">Doctorat</option>
                                 </select>
                             <% } else if (data.diplome=="master")  { %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" >Aucun</option>
                                     <option value="bac" >Bac</option>
                                     <option value="bts" >Bts</option>
@@ -109,7 +109,7 @@
                                     <option value="doctorat">Doctorat</option>
                                 </select>
                             <% } else if (data.diplome=="doctorat")  { %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" >Aucun</option>
                                     <option value="bac" >Bac</option>
                                     <option value="bts" >Bts</option>
@@ -119,7 +119,7 @@
                                     <option value="doctorat" selected>Doctorat</option>
                                 </select>
                             <% } else { %>
-                                <select class="custom-select" name="inputDiplome">
+                                <select class="custom-select" name="inputDiplome" id="inputDiplome">
                                     <option value="aucun" selected>Aucun</option>
                                     <option value="bac">Bac</option>
                                     <option value="bts">Bts</option>
@@ -136,7 +136,7 @@
                                 <label class="input-group-text" for="inputSituation">Situation</label>
                             </div>
                             <% if (data.situation=="chomage"){ %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" >Sans activité</option>
                                     <option value="chomage" selected>Chomage</option>
                                     <option value="employé/ouvrier" >Employé ou Ouvrier</option>
@@ -146,7 +146,7 @@
                                     <option value="chef d'entreprise" >Chef d'entreprise</option>
                                 </select>
                             <% } else if (data.situation=="employé/ouvrier")  { %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" >Sans activité</option>
                                     <option value="chomage" >Chomage</option>
                                     <option value="employé/ouvrier" selected>Employé ou Ouvrier</option>
@@ -156,7 +156,7 @@
                                     <option value="chef d'entreprise" >Chef d'entreprise</option>
                                 </select>
                             <% } else if (data.situation=="commercant")  { %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" >Sans activité</option>
                                     <option value="chomage" >Chomage</option>
                                     <option value="employé/ouvrier" >Employé ou Ouvrier</option>
@@ -166,7 +166,7 @@
                                     <option value="chef d'entreprise" >Chef d'entreprise</option>
                                 </select>
                             <% } else if (data.situation=="cadre")  { %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" >Sans activité</option>
                                     <option value="chomage" >Chomage</option>
                                     <option value="employé/ouvrier" >Employé ou Ouvrier</option>
@@ -176,7 +176,7 @@
                                     <option value="chef d'entreprise" >Chef d'entreprise</option>
                                 </select>
                             <% } else if (data.situation=="professeur")  { %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" >Sans activité</option>
                                     <option value="chomage" >Chomage</option>
                                     <option value="employé/ouvrier" >Employé ou Ouvrier</option>
@@ -186,7 +186,7 @@
                                     <option value="chef d'entreprise" >Chef d'entreprise</option>
                                 </select>
                             <% } else if (data.situation=="chef d'entreprise")  { %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" >Sans activité</option>
                                     <option value="chomage" >Chomage</option>
                                     <option value="employé/ouvrier" >Employé ou Ouvrier</option>
@@ -196,7 +196,7 @@
                                     <option value="chef d'entreprise" selected>Chef d'entreprise</option>
                                 </select>
                             <% } else { %>
-                                <select class="custom-select" name="inputSituation">
+                                <select class="custom-select" name="inputSituation" id="inputSituation">
                                     <option value="sans activité" selected>Sans activité</option>
                                     <option value="chomage" >Chomage</option>
                                     <option value="employé/ouvrier" >Employé ou Ouvrier</option>
@@ -213,7 +213,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Description de vous</span>
                             </div>
-                            <textarea class="form-control" aria-label="Description de vous" name="inputDescription" ><%= data.a_propos %></textarea>
+                            <textarea class="form-control" aria-label="Description de vous" name="inputDescription" id="inputDescription"><%= data.a_propos %></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPseudo">Date de naissance</label>
@@ -230,6 +230,7 @@
                     <% } %>
                     <br>
                     <button type="submit" id="send" class="btn btn-primary btn-lg">Modifier</button>
+                    <a href="/profil" class="btn btn-danger btn-lg"> Annuler</a>
                 </div>
             </div>
 
