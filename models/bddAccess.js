@@ -258,10 +258,14 @@ class Model {
     }
 
     static addLike(ide,idd,cb){
-        connection.query('insert into ami values (default ,?,?)',[ide,idd],(err)=>{
-            if (err) throw err
-            cb("like enregistré")
-        })
+        if (Number.isInteger(parseInt(ide,10)) && Number.isInteger(parseInt(idd,10))){
+            connection.query('insert into ami values (default ,?,?)',[ide,idd],(err)=>{
+                if (err) throw err
+                cb("like enregistré")
+            })
+        }else {
+            cb("probleme d'argument, like annulé")
+        }
     }
 
     static removeLike(ide,idd,cb){
@@ -416,10 +420,15 @@ class Model {
     }
 
     static addMessage(ide,idd,text,cb){
-        connection.query("insert into message values (default,?,?,?,?)",[ide,idd,new Date(),text],(err)=>{
-            if (err) throw err
-            cb("new message")
-        })
+        if (Number.isInteger(parseInt(ide,10)) && Number.isInteger(parseInt(idd,10))){
+            connection.query("insert into message values (default,?,?,?,?)",[ide,idd,new Date(),text],(err)=>{
+                if (err) throw err
+                cb("new message")
+            })
+        }else {
+            cb("probleme d'argument, like annulé")
+        }
+
     }
 }
 

@@ -59,12 +59,13 @@ router.post('/profil/:id', function(req, res, next) {
 router.post('/profil', function(req, res, next) {
     model.addImage(req.session.id_user,req.body.detailFile,function (name) {
         if (Object.keys(req.files).length == 0) {
-            return res.status(400).send('No files were uploaded.');
+            console.log("aucune ficher dll")
+            res.redirect("/profil")
         }
         let sampleFile = req.files.sampleFile;
         sampleFile.mv('./public/images/user_image/'+name, function(err) {
             if (err)
-                return res.status(500).send(err);
+                console.log("impossible d'ajouter le fichier")
             res.redirect("/profil")
         });
     })
