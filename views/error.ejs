@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>FakeBook</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/header.css' />
-</head>
-<h1><a href="/">Revenir à l'accuil</a></h1>
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
-<% include footer.ejs%>
+<% include header2%>
+
+<div class="container">
+    <h1>Oups O_O'! Nous avons rencontré une erreur <%= error.status %> : <%= message %></h1>
+    <pre><%= error.stack %></pre>
+    <div class="text-center">
+        <a href="/" class="btn btn-success btn-lg " >Revenir à l'accueil</a>
+    </div>
+
+</div>
+
+
+<% include footer%>
