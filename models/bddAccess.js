@@ -294,8 +294,8 @@ class Model {
     }
 
     static myTastesProfil(id,cb){
-        connection.query("select id from profil where id in (select id_user from passion where id_passion in (select id_passion from passion where id_user = 7))and id not in (select destinataire from ami where envoyeur = 7) order by rand() limit 1;"
-            ,[id],(err,row)=>{
+        connection.query("select * from profil where id in (select id_user from passion where id_passion in (select id_passion from passion where id_user = ?)) and id not in (select destinataire from ami where envoyeur = ?) order by rand() limit 1;"
+            ,[id,id],(err,row)=>{
                 if (err) throw err
                 connection.query('select * from photo where name like "%-1%"',(err,rowI)=>{
                     if (err) throw err
@@ -313,8 +313,8 @@ class Model {
     }
 
     static othersTastesProfil(id,cb){
-        connection.query("select * from profil where id in (select id_user from passion where id_passion not in (select id_passion from passion where id_user = ?)) order by rand() limit 1;"
-            ,[id],(err,row)=>{
+        connection.query("select * from profil where id in (select id_user from passion where id_passion not in (select id_passion from passion where id_user = ?)) and id not in (select destinataire from ami where envoyeur = ?) order by rand() limit 1;"
+            ,[id,id],(err,row)=>{
                 if (err) throw err
                 connection.query('select * from photo where name like "%-1%"',(err,rowI)=>{
                     if (err) throw err
